@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html lang="en" class="browser-modern">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>MU Puzzle</title>
+    <meta name="description" content="Play the MU puzzle from Gödel, Escher, Bach." />
+    <meta name="author" content="Olly Britton" />
+
+    <meta property="og:title" content="3D Noughts & Crosses" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Play the MU puzzle from Gödel, Escher, Bach." />
+
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="css/tachyons.min.css" />
+    <link rel="stylesheet" href="css/styles.css?v=1.0" />
+</head>
+
+<body>
+    <div class="cf pa3 pa4-ns container helvetica">
+        <h1 class="mt0 f2 f1-l title fw1 baskerville">MU Puzzle</h1>
+
+        <div class="fr pl2 w-100 w-50-ns">
+            <div class="f6 mb2 gray i">
+                Current string
+            </div>
+            <pre id="current-string">MI</pre>
+
+            <div class="f6 mb2 gray i">Options</div>
+            <div>
+                <ul class="apply-list" id="apply-list">
+                    <li><strong class="apply-rule" id="apply-rule-1" onclick="push('MIU', 'Applied rule 1')">Apply rule 1:</strong><br> <code>MIU</code></li>
+                    <li><strong class="apply-rule" id="apply-rule-2" onclick="push('MII', 'Applied rule 2')">Apply rule 2:</strong><br> <code>MII</code></li>
+                    <li class="greyed-out"><strong class="apply-rule" id="apply-rule-3">Apply rule 3:</strong> ...</li>
+                    <li class="greyed-out"><strong class="apply-rule" id="apply-rule-3">Apply rule 4:</strong> ...</li>
+                </ul>
+            </div>
+
+            <div class="f6 gray i">History</div>
+            <div class="mb2 ma3" id="history">
+                <li class="f5 lh-2">Start: <code>MI</code>.</li>
+            </div>
+        </div>
+
+        <div class="fl pr2 w-100 w-50-ns">
+            <hr class="dn-ns mt4 mb4" />
+            <h2 class="dn-ns">Information</h2>
+            <p class="mt0 lh-copy">
+                The <a href="https://en.wikipedia.org/wiki/Tic-tac-toe" class="link blue">MU puzzle</a> is a puzzle presented by Douglas Hofstadter in his famous book "Gödel, Escher, Bach". The setup is simple: 
+            </p>
+
+            <ul class="mb3">
+                <li class="mb2">
+                    There are three symbols, <code>M</code>, <code>I</code> and <code>U</code>.
+                </li>
+                <li class="mb2">
+                    These symbols can be combined together to make strings of symbols, like <code>MUIUI</code> or <code>MUU</code>.
+                </li>
+                <li class="mb2">
+                    You start with the string <code>MI</code>, and the goal is to turn it into the string <code>MU</code> by applying some sequence of the following rules:
+                </li>
+                <ul>
+                    <li class="mb2">
+                        <strong>Rule 1</strong>: Add a <code>U</code> to the end of any string ending in <code>I</code>.
+                    </li>
+                    <li class="mb2">
+                        <strong>Rule 2</strong>: Double the string after <code>M</code>.
+                    </li>
+                    <li class="mb2">
+                        <strong>Rule 3</strong>: Replace any <code>III</code> with a <code>U</code>.
+                    </li>
+                    <li class="mb2">
+                        <strong>Rule 4</strong>: Remove any <code>UU</code>.
+                    </li>
+                </ul>
+            </ul>
+
+            <p class="mt0 lh-copy">
+                Can this be done? Give it a go by clicking the buttons. When you're ready to see a solution, expand the section below.
+            </p>
+
+            <details>
+                <summary class="no-highlight"><strong>Solution</strong></summary>
+                <p class="mt0 lh-copy">
+                    It's impossible to solve the puzzle. To do this, you can look at an "invariant", something that doesn't change while applying the rules.
+                </p>
+                <p class="mt0 lh-copy">
+                    Consider the total number of <kbd>I</kbd>s in a string. Only rule 2 and rule 3 can change this number. Rule 2 will double it while rule three will reduce it by three. An invariant property is that the number of <kbd>I</kbd>s is not divisible by 3: at the start, there is one <kbd>I</kbd>, which is definitely not divisible by 3. Doubling a number not divisible by 3 does not make it divisible by 3, and subtracting 3 from a number that is not divisible by 3 does not make it divisble by 3 either. But if we were to reach <kbd>MU</kbd>, then we would have zero <kbd>I</kbd>s, which is divisible by 3, so it's impossible to find a sequence of rules that reach that state.
+                </p>
+            </details>
+
+            <br />
+            <hr />
+
+
+            <h3 class="mt3 mb2 lh-copy">Thanks!</h3>
+
+            <p class="mt0 lh-copy">I hope you enjoyed the puzzle! If you want to see the source code, it's <a
+                href="https://github.com/ollybritton/mu-puzzle" class="link blue">available here on
+                GitHub</a>. If you want to see some of my other projects, check out <a
+                href="https://projects.ollybritton.com" class="link blue">my website</a>.</p>
+        </div>
+    </div>
+
+
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="js/scripts.js"></script>
+</body>
+
+</html>
